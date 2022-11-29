@@ -1,14 +1,24 @@
 import './App.css';
 import Navbar from './components/navbar';
-import Router from "react-router-dom";
 import Home from './pages/home';
+import Ramen from './pages/ramen';
+import NewRamen from './pages/newRamen';
+import UpdateRamen from './pages/updateRamen';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <h1>Ramen Cookbook</h1>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/ramen" element={<Ramen />} />
+          <Route path="/new-ramen" element={<NewRamen />} />
+          <Route path="/update-ramen" element={<UpdateRamen />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
