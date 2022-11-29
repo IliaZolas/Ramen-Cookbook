@@ -1,5 +1,13 @@
 const express = require('express')
 const routes = express.Router()
+const newUserTemplateCopy = require('../models/users')
+const newRamenTemplateCopy = require('../models/ramens')
+
+// Index Routes
+
+routes.get('/', (req, res) => {
+    res.send('Hello world');
+})
 
 // User Routes
 routes.post('/user/new', (request, response) =>{
@@ -32,11 +40,8 @@ routes.delete('/user/:id', (req, res) => {
 
 })
 
-
-
-
-
 // Ramen Routes
+
 routes.post('/ramen/new', (request, response) =>{
     const newRamen = new newRamenTemplateCopy({
         title:request.body.title,
