@@ -13,15 +13,17 @@ const newRamenTemplate = new mongoose.Schema ({
         ingredients:{
             type:String,
             required:false
-        },
-        user_id:{
-            type:String,
-            required:false
-        },
-        date:{
-            type:Date,
-            default:Date.now
         }
+        // ,
+        // user_id:{
+        //     type:String,
+        //     required:false
+        // }
+        // ,
+        // date:{
+        //     type:Date,
+        //     default:Date.now
+        // }
 })
 
 module.exports = mongoose.model('ramentable', newRamenTemplate )

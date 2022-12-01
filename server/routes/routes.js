@@ -42,11 +42,11 @@ routes.delete('/user/:id', (req, res) => {
 
 // Ramen Routes
 
-routes.post('/ramen/new', (request, response) =>{
+routes.post('http://localhost:4000/ramen/add', (req, res) =>{
     const newRamen = new newRamenTemplateCopy({
-        title:request.body.title,
-        description:request.body.descriptionn,
-        ingredients:request.body.ingredients
+        title:req.body.title,
+        description:req.body.descriptionn,
+        ingredients:req.body.ingredients
     })
     newRamen.save()
     .then(data =>{

@@ -1,57 +1,71 @@
 import { useState } from "react";
 
-const AddRamenForm = () => {
-    const [ramen, setRamen ] = useState([{
-        title:'',
-        ingredients:'',
-        description:''
-    }]);
+const AddRamen = () => {
+    const [title, setTitle ] = useState('');
+    const [ingredients, setIngredients ] = useState('');
+    const [description, setDescription ] = useState('');
 
-    const onSubmitForm = async e => {
-        try {
-            const body = { title, description, ingredients};
-            const response = await fetch("http://localhost:4000/ramen/new", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(body)
-            });
-      
-            window.location = "/ramen";
-          } catch (err) {
-            console.error(err.message);
-          }
-    };
+    const AddRamen = async (title, ingredients, description) => {
+        await fetch('http://localhost:4000/ramen/add', {
+        method: 'POST',
+        body: JSON.stringify({
+            title: title,
+            ingredients:ingredients,
+            description:description,
+            // userId: Math.random().toString(36).slice(2),
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        })
+        .then((response) => { 
+            console.log(response.json());
+            console.log(response);
+        })
+        .then((data) => {
+        setTitle();
+        setIngredients();
+        setDescription();
+        })
+        .catch((err) => {
+        console.log(err.message , ":error message");
+    });
+};
 
- return (
-    <form method="post" onSubmit={onSubmitForm}>
+const handleSubmit = (e) => {
+    e.preventDefault();
+    AddRamen(title, ingredients, description );
+};
+
+    return (
+    <form method="post" onSubmit={handleSubmit}>
         <label>
             Title
             <input 
                 type="text" 
                 name="title" 
-                value="title"
-                onChange={e => setRamen(e.target.value.title)} />
+                placeholder="title"
+                onChange={e => setTitle(e.target.value)} />
         </label>
         <label>
             Ingredients
             <input 
                 type="text" 
                 name="ingredients" 
-                value="ingredients"
-                onChange={e => setRamen(e.target.value.ingredients)} />
+                placeholdere="ingredients"
+                onChange={e => setIngredients(e.target.value)} />
         </label>
         <label>
             Description
             <input 
                 type="text" 
                 name="description" 
-                value="description"
-                onChange={e => setRamen(e.target.value.description)} />
+                placeholder="description"
+                onChange={e => setDescription(e.target.value)} />
         </label>
         <input type="submit" value="Submit" />
     </form>
- );
-
+    );
 }
 
-export default AddRamenForm;
+export default AddRamen;
