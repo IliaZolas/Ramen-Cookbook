@@ -14,11 +14,11 @@ const newRamenTemplate = new mongoose.Schema ({
             type:String,
             required:false
         }
-        // ,
-        // user_id:{
-        //     type:String,
-        //     required:false
-        // }
+        ,
+        id:{
+            type:String,
+            required:false
+        }
         // ,
         // date:{
         //     type:Date,

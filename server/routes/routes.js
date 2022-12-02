@@ -74,14 +74,17 @@ routes.patch('/ramen/:id', (req, res) => {
 
 })
 
-// routes.delete('/app/ramen/:id', (req, res) => {
-//     const ramen = Ramens.find(ramen => ramen.id === parseInt(req.params.id));
-//     if (!ramen) return res.status(404).send('The ramen with the given ID was not found.');
-//     const index = Ramens.indexOf(ramen);
-//     Ramens.splice(index, 1);
-
-//     res.send(ramen);
-// })
+routes.delete('/app/ramen/:id', (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    // const ramen = Ramens.find(ramen => ramen.id === parseInt(req.params.id));
+    // if (!ramen) 
+    // return res.status(404).send('The ramen with the given ID was not found.');
+    
+    // const index = Ramens.indexOf(ramen);
+    // Ramens.splice(index, 1);
+    // res.send(ramen);
+})
 
 
 
