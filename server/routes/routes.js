@@ -2,6 +2,7 @@ const express = require('express')
 const routes = express.Router()
 const newUserTemplateCopy = require('../models/users')
 const newRamenTemplateCopy = require('../models/ramens')
+const Ramens = require('../models/ramens')
 
 // Index Routes
 
@@ -42,20 +43,20 @@ routes.delete('/user/:id', (req, res) => {
 
 // Ramen Routes
 
-routes.post('http://localhost:4000/ramen/add', (req, res) =>{
+routes.post('/app/ramen/add', (req, res) =>{
     const newRamen = new newRamenTemplateCopy({
         title:req.body.title,
-        description:req.body.descriptionn,
+        description:req.body.description,
         ingredients:req.body.ingredients
     })
     newRamen.save()
     .then(data =>{
-        response.json(data)
+        res.json(data)
         console.log("Send request successful")
     })
     .catch(error => {
-        response.json(error)
-        console.log("Send request failed")
+        res.json(error)
+        console.log("Send request failed", error)
     }) 
 })
 
@@ -63,7 +64,9 @@ routes.get('/ramen/:id', (request, response) => {
 
 })
 
-routes.get('/ramen', (request, response) => {
+routes.get('/app/ramen', (request, response) => {
+    Ramens.find()
+    .then(data => response.json(data))
 
 })
 
@@ -71,9 +74,14 @@ routes.patch('/ramen/:id', (req, res) => {
 
 })
 
-routes.delete('/ramen/:id', (req, res) => {
+// routes.delete('/app/ramen/:id', (req, res) => {
+//     const ramen = Ramens.find(ramen => ramen.id === parseInt(req.params.id));
+//     if (!ramen) return res.status(404).send('The ramen with the given ID was not found.');
+//     const index = Ramens.indexOf(ramen);
+//     Ramens.splice(index, 1);
 
-})
+//     res.send(ramen);
+// })
 
 
 

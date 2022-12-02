@@ -1,28 +1,30 @@
 import { useState } from "react";
+import {Link, useNavigate } from 'react-router-dom';
 
 const AddRamen = () => {
     const [title, setTitle ] = useState('');
     const [ingredients, setIngredients ] = useState('');
     const [description, setDescription ] = useState('');
+    const navigate = useNavigate();
 
     const AddRamen = async (title, ingredients, description) => {
-        await fetch('http://localhost:4000/ramen/add', {
+        await fetch('http://localhost:4000/app/ramen/add', {
         method: 'POST',
         body: JSON.stringify({
             title: title,
-            ingredients:ingredients,
-            description:description,
+            ingredients: ingredients,
+            description: description,
             // userId: Math.random().toString(36).slice(2),
         }),
         headers: {
-            'Content-type': 'application/json; charset=UTF-8',
+            'Content-type': 'application/json; charset=UTF-8'
         },
         })
         .then((response) => { 
-            console.log(response.json());
-            console.log(response);
+            console.log("prom:",response.json());
+            console.log("promise:",response);
         })
-        .then((data) => {
+        .then(() => {
         setTitle();
         setIngredients();
         setDescription();
@@ -30,6 +32,7 @@ const AddRamen = () => {
         .catch((err) => {
         console.log(err.message , ":error message");
     });
+    navigate('/ramen');
 };
 
 const handleSubmit = (e) => {
