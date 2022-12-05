@@ -45,6 +45,7 @@ routes.delete('/user/:id', (req, res) => {
 
 routes.post('/app/ramen/add', (req, res) =>{
     const newRamen = new newRamenTemplateCopy({
+        id: req.body.id,
         title:req.body.title,
         description:req.body.description,
         ingredients:req.body.ingredients
@@ -74,18 +75,18 @@ routes.patch('/ramen/:id', (req, res) => {
 
 })
 
-routes.delete('/app/ramen/:id', (req, res) => {
-    const id = req.params.id;
-    console.log(id);
-    // const ramen = Ramens.find(ramen => ramen.id === parseInt(req.params.id));
-    // if (!ramen) 
-    // return res.status(404).send('The ramen with the given ID was not found.');
-    
-    // const index = Ramens.indexOf(ramen);
-    // Ramens.splice(index, 1);
-    // res.send(ramen);
+routes.delete('/app/ramen/delete/:id', (req, res) => {
+    const ramenID = req.params
+    console.log(ramenID)
+  
+    Ramens.deleteOne(ramenID, function (err, _result) {
+        if (err) {
+          res.status(400).send(`Error deleting listing with id ${ramenID.id}!`);
+        } else {
+          console.log("1 document deleted");
+        }
+      })
 })
-
 
 
 module.exports = routes

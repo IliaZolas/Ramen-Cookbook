@@ -5,12 +5,14 @@ const AddRamen = () => {
     const [title, setTitle ] = useState('');
     const [ingredients, setIngredients ] = useState('');
     const [description, setDescription ] = useState('');
+    const [id, setID ] = useState('');
     const navigate = useNavigate();
 
-    const AddRamen = async (title, ingredients, description) => {
+    const AddRamen = async (id, title, ingredients, description) => {
         await fetch('http://localhost:4000/app/ramen/add', {
         method: 'POST',
         body: JSON.stringify({
+            id: id,
             title: title,
             ingredients: ingredients,
             description: description,
@@ -28,6 +30,7 @@ const AddRamen = () => {
         setTitle();
         setIngredients();
         setDescription();
+        setID();
         })
         .catch((err) => {
         console.log(err.message , ":error message");
@@ -37,7 +40,7 @@ const AddRamen = () => {
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    AddRamen(title, ingredients, description );
+    AddRamen(id, title, ingredients, description );
 };
 
     return (
@@ -66,6 +69,14 @@ const handleSubmit = (e) => {
                 placeholder="description"
                 onChange={e => setDescription(e.target.value)} />
         </label>
+        <label>
+            ID
+        <input 
+                type="text" 
+                name="iid" 
+                placeholdere="id"
+                onChange={e => setID(e.target.value)} />
+                </label>
         <input type="submit" value="Submit" />
     </form>
     );
