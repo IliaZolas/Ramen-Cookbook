@@ -7,6 +7,7 @@ const RamenCard = () => {
         fetch('http://localhost:4000/app/ramen')
             .then((response) => response.json())
             .then((data) => {
+                // console.log(data);
                 setRamen(data);
             })
             .catch((err) => {
@@ -20,15 +21,15 @@ const RamenCard = () => {
             }).then((response) => {            
                 if (response.status === 200) {
                     setRamen(
-                       ramens.filter((ramen) => {
-                          return ramen.id !== id;
-                       })
+                        ramens.filter((ramen) => {
+                            return ramen.id !== id;
+                        })
                     );
-                 } else {
-                    return;
-                 }
-              });
-              };
+                    } else {
+                        return;
+                    }
+                });
+            };
 
         const viewRamen = async (req, resp) => {
 
@@ -41,7 +42,7 @@ const RamenCard = () => {
                 {ramens.map((ramen) => {
                 return (
                     <div className="" style={{padding: "10px", background: "grey", width: "400px", margin: "auto", marginBottom: "25px"}}>
-                         <h1>{ramen.id}</h1>
+                        <h1>{ramen.id}</h1>
                         <h1>{ramen.title}</h1>
                         <h2 className="">{ramen.ingredients}</h2>
                         <p className="">{ramen.description}</p>
