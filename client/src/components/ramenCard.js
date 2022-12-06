@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+
+
+
 const RamenCard = () => {
     const [ramens, setRamen] = useState([]);
     const navigate = useNavigate();
@@ -16,35 +19,35 @@ const RamenCard = () => {
             });  
         }, []);
 
-        const deleteRamen = async (id) => {
-            await fetch(`http://localhost:4000/app/ramen/delete/${id}`, {
-            method: 'DELETE',
-            }).then((response) => {            
-                if (response.status === 200) {
-                    setRamen(
-                        ramens.filter((ramen) => {
-                            return ramen.id !== id;
-                        })
-                    );
-                    } else {
-                        return;
-                    }
-                });
-                navigate('/ramen');
-            };
-
-        const viewRamen = (id) => {
-            fetch(`http://localhost:4000/app/ramen/${id}`)
-            .then((response) => response.json())
-            .then((data) => {
-                // console.log(data);
-                setRamen(data);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            }); 
-            navigate(`/ramen/${id}`);
+    const deleteRamen = async (id) => {
+        await fetch(`http://localhost:4000/app/ramen/delete/${id}`, {
+        method: 'DELETE',
+        }).then((response) => {            
+            if (response.status === 200) {
+                setRamen(
+                    ramens.filter((ramen) => {
+                        return ramen.id !== id;
+                    })
+                );
+                } else {
+                    return;
+                }
+            });
+            navigate('/ramen');
         };
+
+    const viewRamen = (id) => {
+        fetch(`http://localhost:4000/app/ramen/${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+            // console.log(data);
+            setRamen(data);
+        })
+        .catch((err) => {
+            console.log(err.message);
+        }); 
+        navigate(`/ramen/show/${id}`);
+    };
 
 
     return (
@@ -52,7 +55,7 @@ const RamenCard = () => {
             <div className="">
                 {ramens.map((ramen) => {
                 return (
-                    <div className="" style={{padding: "10px", background: "grey", width: "400px", margin: "auto", marginBottom: "25px"}}>
+                    <div id={ramen.id} className="" style={{padding: "10px", background: "grey", width: "400px", margin: "auto", marginBottom: "25px"}}>
                         <h1>{ramen.id}</h1>
                         <h1>{ramen.title}</h1>
                         <h2 className="">{ramen.ingredients}</h2>

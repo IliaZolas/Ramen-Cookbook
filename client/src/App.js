@@ -17,7 +17,7 @@ function App() {
           <Route path="/ramen" element={<Ramen />} />
           <Route path="/new-ramen" element={<NewRamen />} />
           <Route path="/update-ramen" element={<UpdateRamen />} />
-          <Route path="/ramen/:id" element={<ShowRamen />} />
+          <Route path="/ramen/show/:id" element={<ShowRamen />} />
         </Routes>
       </div>
     </Router>

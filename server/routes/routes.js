@@ -61,21 +61,20 @@ routes.post('/app/ramen/add', (req, res) =>{
     }) 
 })
 
-routes.get('app/ramen/:id', (req, res) => {
+routes.get('/app/ramen/show/:id', (req, res) => {
     const ramenID = req.params
-    console.log(ramenID, "this is from router")
+    console.log(ramenID, "this is from router GET SINGLE RECORD")
 
-    Ramens.find(ramenID)
+    Ramens.findOne(ramenID)
     .then(data => res.json(data))
 })
 
-routes.get('/app/ramen', (request, response) => {
+routes.get('/app/ramen', (req, res) => {
     Ramens.find()
-    .then(data => response.json(data))
-
+    .then(data => res.json(data))
 })
 
-routes.patch('/ramen/:id', (req, res) => {
+routes.patch('app/ramen/update/:id', (req, res) => {
 
 })
 
