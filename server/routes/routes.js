@@ -61,8 +61,12 @@ routes.post('/app/ramen/add', (req, res) =>{
     }) 
 })
 
-routes.get('/ramen/:id', (request, response) => {
+routes.get('app/ramen/:id', (req, res) => {
+    const ramenID = req.params
+    console.log(ramenID, "this is from router")
 
+    Ramens.find(ramenID)
+    .then(data => res.json(data))
 })
 
 routes.get('/app/ramen', (request, response) => {
