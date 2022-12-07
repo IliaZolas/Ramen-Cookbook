@@ -1,6 +1,6 @@
 
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 
 
@@ -12,8 +12,6 @@ const UpdateRamenForm = () => {
     const [description, setDescription ] = useState('');
     const [id, setID ] = useState('');
     const navigate = useNavigate();
-    const params = useParams();
-    const ramenID = params.id;
 
 const updateRamen = async (id, title, ingredients, description) => {
     await fetch(`http://localhost:4000/app/ramen/update/${id}`, {

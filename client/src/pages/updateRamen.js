@@ -1,6 +1,4 @@
 import UpdateRamenForm from "../components/updateRamenForm";
-import { useNavigate, useParams } from 'react-router-dom';
-import { useState } from "react";
 
 const UpdateRamen = () => {
 
