@@ -37,16 +37,11 @@ const RamenCard = () => {
         };
 
     const viewRamen = (id) => {
-        fetch(`http://localhost:4000/app/ramen/${id}`)
-        .then((response) => response.json())
-        .then((data) => {
-            // console.log(data);
-            setRamen(data);
-        })
-        .catch((err) => {
-            console.log(err.message);
-        }); 
         navigate(`/ramen/show/${id}`);
+    };
+
+    const updateRamen = (id) => {
+        navigate(`/ramen/update/${id}`);
     };
 
 
@@ -63,6 +58,7 @@ const RamenCard = () => {
                         <div className="">
                             <div className="delete-button" style={ {background: "red", color: "white", width: "200px", textAlign: "center", margin:"auto"}} onClick={() => deleteRamen(ramen.id)} >Delete</div>
                             <div className="delete-button" style={ {background: "green", color: "white", width: "200px", textAlign: "center", margin:"auto", marginTop: "10px"}} onClick={() => viewRamen(ramen.id)} >View</div>
+                            <div className="delete-button" style={ {background: "green", color: "white", width: "200px", textAlign: "center", margin:"auto", marginTop: "10px"}} onClick={() => updateRamen(ramen.id)} >Update</div>
                         </div>
                     </div>
                     );

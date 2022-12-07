@@ -74,21 +74,25 @@ routes.get('/app/ramen', (req, res) => {
     .then(data => res.json(data))
 })
 
-routes.patch('app/ramen/update/:id', (req, res) => {
+routes.put('/app/ramen/update/:id', (req, res) => {
+    const ramenID = req.params
+    console.log(ramenID, "this is from router UPDATE SINGLE RECORD")
 
+    Ramens.updateOne(ramenID)
+    .then(data => res.json(data))
 })
 
 routes.delete('/app/ramen/delete/:id', (req, res) => {
     const ramenID = req.params
     console.log(ramenID)
-  
+
     Ramens.deleteOne(ramenID, function (err, _result) {
         if (err) {
-          res.status(400).send(`Error deleting listing with id ${ramenID.id}!`);
+            res.status(400).send(`Error deleting listing with id ${ramenID.id}!`);
         } else {
-          console.log("1 document deleted");
+            console.log("1 document deleted");
         }
-      })
+    })
 })
 
 

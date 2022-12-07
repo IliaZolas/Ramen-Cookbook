@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/ramen" element={<Ramen />} />
           <Route path="/new-ramen" element={<NewRamen />} />
-          <Route path="/update-ramen" element={<UpdateRamen />} />
+          <Route path="/ramen/update/:id" element={<UpdateRamen />} />
           <Route path="/ramen/show/:id" element={<ShowRamen />} />
         </Routes>
       </div>
