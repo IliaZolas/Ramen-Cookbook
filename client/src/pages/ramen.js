@@ -1,11 +1,11 @@
-import RamenCard from "../components/ramenCard";
+import RamenCard from '../components/ramenCard';
 
 const Ramen = () => {
     return (
         <div className="">
             <div className="">
-               Ramen List
-               <RamenCard />
+                Ramen List
+                <RamenCard />
             </div>
         </div>
     );
