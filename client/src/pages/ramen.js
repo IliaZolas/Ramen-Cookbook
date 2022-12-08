@@ -1,10 +1,11 @@
 import RamenCard from '../components/ramenCard';
+import './ramen.css'
 
 const Ramen = () => {
     return (
-        <div className="">
+        <div className="ramen-list-body">
             <div className="">
-                Ramen List
+                <h1>All ramens</h1>
                 <RamenCard />
             </div>
         </div>

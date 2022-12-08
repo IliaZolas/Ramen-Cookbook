@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import './ramencard.css'
 
 
 
@@ -47,18 +48,17 @@ const RamenCard = () => {
 
     return (
         <div className="">
-            <div className="">
+            <div className="card-area">
                 {ramens.map((ramen) => {
                 return (
-                    <div id={ramen.id} className="" style={{padding: "10px", background: "grey", width: "400px", margin: "auto", marginBottom: "25px"}}>
-                        <h1>{ramen.id}</h1>
-                        <h1>{ramen.title}</h1>
-                        <h2 className="">{ramen.ingredients}</h2>
+                    <div id={ramen.id} className="ramen-card" >
+                        <h1>{ramen.id}. {ramen.title}</h1>
+                        <h2>{ramen.ingredients}</h2>
                         <p className="">{ramen.description}</p>
-                        <div className="">
-                            <div className="delete-button" style={ {background: "red", color: "white", width: "200px", textAlign: "center", margin:"auto"}} onClick={() => deleteRamen(ramen.id)} >Delete</div>
-                            <div className="delete-button" style={ {background: "green", color: "white", width: "200px", textAlign: "center", margin:"auto", marginTop: "10px"}} onClick={() => viewRamen(ramen.id)} >View</div>
-                            <div className="delete-button" style={ {background: "green", color: "white", width: "200px", textAlign: "center", margin:"auto", marginTop: "10px"}} onClick={() => updateRamen(ramen.id)} >Update</div>
+                        <div className="card-button-area">
+                            <div className="show-button button" onClick={() => viewRamen(ramen.id)} >View</div>
+                            <div className="update-button button" onClick={() => updateRamen(ramen.id)} >Update</div>
+                            <div className="delete-button button" onClick={() => deleteRamen(ramen.id)} >Delete</div>
                         </div>
                     </div>
                     );

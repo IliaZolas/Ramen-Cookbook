@@ -1,26 +1,22 @@
 import {Link} from 'react-router-dom';
+import './navbar.css';
 
 const Navbar = () => {
     return (
-        <div className="">
-            <div className="">
-                <ul>
-                    <Link to="/">
-                        <li>Home</li>
-                    </Link>
-                    <Link to="/ramen">
-                        <li>Ramens</li>
-                    </Link>
-                    <Link to="/new-ramen">
-                        <li>Add a ramen</li>
-                    </Link>
-                    <Link to="/update-ramen">
-                        <li>Update a ramen</li>
-                    </Link>
-                </ul>
+        <div className="navbar">
+            <div className="navitems">
+                <Link to="/" className="navitem">
+                    Home
+                </Link>
+                <Link to="/ramen" className="navitem">
+                    Ramens
+                </Link>
+                <Link to="/new-ramen" className="navitem">
+                    Add a ramen
+                </Link>
             </div>
         </div>
-      );
+    );
 };
 
 export default Navbar;
