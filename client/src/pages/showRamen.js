@@ -47,7 +47,7 @@ const ShowRamen = () => {
     return (
         <div className="">
             <div className="">
-                Show a Ramen
+                Show {ramen.title}
 
                     <div className="" style={{padding: "10px", background: "grey", width: "400px", margin: "auto", marginBottom: "25px"}}>
                         <h1>{ramen.id}</h1>
