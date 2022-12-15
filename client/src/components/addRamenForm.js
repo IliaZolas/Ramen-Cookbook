@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import "../pages/newRamen.css"
+import "./ramenForm.css"
 
 const AddRamen = () => {
     const [title, setTitle ] = useState('');

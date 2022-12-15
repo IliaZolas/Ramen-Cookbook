@@ -1,5 +1,4 @@
 import AddRamenForm from "../components/addRamenForm";
-import "./newRamen.css"
 
 const NewRamen = () => {
     return (
