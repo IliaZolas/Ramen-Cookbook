@@ -1,0 +1,26 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    /* align-items: center; */
+    margin: auto;
+}
+
+.labels {
+    padding: 5px 0 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+input {
+    margin: 10px 0 10px 0;
+}
+
+.primary-submit-button {
+    color: white;
+    font-size: 18px;;
+    background-color: red;
+    border: 0px;
+    padding: 20px 10px;
+}

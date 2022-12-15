@@ -53,7 +53,7 @@ const updateRamen = async (id, title, ingredients, description) => {
 
     return (
         <form method="post" onSubmit={handleSubmit}>
-        <label>
+        <label className="labels">
             Title
             <input 
                 type="text" 
@@ -61,7 +61,7 @@ const updateRamen = async (id, title, ingredients, description) => {
                 placeholder="title"
                 onChange={e => setTitle(e.target.value)} />
         </label>
-        <label>
+        <label className="labels">
             Ingredients
             <input 
                 type="text" 
@@ -69,15 +69,15 @@ const updateRamen = async (id, title, ingredients, description) => {
                 placeholdere="ingredients"
                 onChange={e => setIngredients(e.target.value)} />
         </label>
-        <label>
+        <label className="labels">
             Description
-            <input 
-                type="text" 
+            <textarea 
+                type="textarea" 
                 name="description" 
                 placeholder="description"
                 onChange={e => setDescription(e.target.value)} />
         </label>
-        <label>
+        <label className="labels">
             ID
         <input 
                 type="text" 
@@ -85,7 +85,7 @@ const updateRamen = async (id, title, ingredients, description) => {
                 placeholdere="id"
                 onChange={e => setID(e.target.value)} />
                 </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" className="primary-submit-button" />
     </form>
     )
 };
