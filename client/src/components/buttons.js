@@ -1,13 +1,12 @@
 import {Link} from 'react-router-dom';
+import "./button.css"
 
 const PrimaryButton = () => {
     return (
         <div className="">
-            <div className="">
-                <Link to="/ramen">
-                    <p>See Ramen List</p>
+                <Link to="/ramen" className="primary-button">
+                    See Ramens
                 </Link>
-            </div>
         </div>
     );
 };
