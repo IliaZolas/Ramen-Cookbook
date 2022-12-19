@@ -64,9 +64,16 @@ routes.post('/app/ramen/add', (req, res) =>{
 
 routes.get(`/app/ramen/show/:id`, (req, res) => {
     const ramenID = req.params
-    console.log(ramenID, "this is from router GET SINGLE RECORD")
+    console.log("GET SINGLE RECORD:", ramenID)
 
-    Ramens.findOne(ramenID)
+    Ramens.findOne({_id: ramenID},
+        function (err, _result) {
+            if (err) {
+                res.status(400);
+            } else {
+                console.log("1 document retreived");
+            }
+        })
     .then(data => res.json(data))
 })
 
@@ -77,7 +84,7 @@ routes.get('/app/ramen', (req, res) => {
 
 routes.put('/app/ramen/update/:id', (req, res) => {
     Ramens.updateOne({
-        id: req.body._id,
+        // id: req.body._id,
         title:req.body.title,
         description:req.body.description,
         ingredients:req.body.ingredients
