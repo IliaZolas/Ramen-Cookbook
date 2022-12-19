@@ -3,6 +3,7 @@ const routes = express.Router()
 const newUserTemplateCopy = require('../models/users')
 const newRamenTemplateCopy = require('../models/ramens')
 const Ramens = require('../models/ramens')
+const mongoose = require('mongoose')
 
 // Index Routes
 
@@ -45,7 +46,7 @@ routes.delete('/user/:id', (req, res) => {
 
 routes.post('/app/ramen/add', (req, res) =>{
     const newRamen = new newRamenTemplateCopy({
-        id: req.body.id,
+        // _id: req.body.id,
         title:req.body.title,
         description:req.body.description,
         ingredients:req.body.ingredients
@@ -61,7 +62,7 @@ routes.post('/app/ramen/add', (req, res) =>{
     }) 
 })
 
-routes.get('/app/ramen/show/:id', (req, res) => {
+routes.get(`/app/ramen/show/:id`, (req, res) => {
     const ramenID = req.params
     console.log(ramenID, "this is from router GET SINGLE RECORD")
 
@@ -76,7 +77,7 @@ routes.get('/app/ramen', (req, res) => {
 
 routes.put('/app/ramen/update/:id', (req, res) => {
     Ramens.updateOne({
-        id: req.body.id,
+        id: req.body._id,
         title:req.body.title,
         description:req.body.description,
         ingredients:req.body.ingredients

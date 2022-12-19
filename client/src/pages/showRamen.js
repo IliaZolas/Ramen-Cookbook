@@ -5,7 +5,7 @@ const ShowRamen = () => {
     const [ramen, setRamen] = useState("");
     const navigate = useNavigate();
     const params = useParams();
-    const id = params.id
+    const id = params._id;
 
     useEffect(() => {
         const fetchRamen = async () => {
@@ -48,7 +48,6 @@ const ShowRamen = () => {
         <div className="">
             <div className="">
                 Show {ramen.title}
-
                     <div className="" style={{padding: "10px", background: "grey", width: "400px", margin: "auto", marginBottom: "25px"}}>
                         <h1>{ramen.id}</h1>
                         <h1>{ramen.title}</h1>

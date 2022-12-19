@@ -12,11 +12,12 @@ const newRamenTemplate = new mongoose.Schema ({
         },
         ingredients:{
             type:String,
-            required:false
+            required:true
         }
         ,
-        id:{
-            type:String,
+       id:{
+            // type:String,
+            type:mongoose.Types.ObjectId,
             required:false
         }
         ,

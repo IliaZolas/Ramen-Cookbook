@@ -12,7 +12,7 @@ const RamenCard = () => {
         fetch('http://localhost:4000/app/ramen')
             .then((response) => response.json())
             .then((data) => {
-                // console.log(data);
+                console.log(data);
                 setRamen(data);
             })
             .catch((err) => {
@@ -38,6 +38,7 @@ const RamenCard = () => {
         };
 
     const viewRamen = (id) => {
+        console.log("this is id", id);
         navigate(`/ramen/show/${id}`);
     };
 
@@ -51,15 +52,15 @@ const RamenCard = () => {
             <div className="card-area">
                 {ramens.map((ramen) => {
                 return (
-                    <div id={ramen.id} className="ramen-card" >
-                        <h1>{ramen.id}. {ramen.title}</h1>
+                    <div id={ramen._id} className="ramen-card" >
+                        <h1>{ramen._id}. {ramen.title}</h1>
                         <h2>{ramen.ingredients}</h2>
                         <h2>{ramen._id}</h2>
                         <p className="">{ramen.description}</p>
                         <div className="card-button-area">
-                            <div className="show-button button" onClick={() => viewRamen(ramen.id)} >View</div>
-                            <div className="update-button button" onClick={() => updateRamen(ramen.id)} >Update</div>
-                            <div className="delete-button button" onClick={() => deleteRamen(ramen.id)} >Delete</div>
+                            <div className="show-button button" onClick={() => viewRamen(ramen._id)} >View</div>
+                            <div className="update-button button" onClick={() => updateRamen(ramen._id)} >Update</div>
+                            <div className="delete-button button" onClick={() => deleteRamen(ramen._id)} >Delete</div>
                         </div>
                     </div>
                     );
