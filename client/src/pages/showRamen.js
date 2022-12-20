@@ -5,22 +5,22 @@ const ShowRamen = () => {
     const [ramen, setRamen] = useState("");
     const navigate = useNavigate();
     const params = useParams();
-    const id = params._id;
+    const id = params.id;
 
-    useEffect(() => {
-        const fetchRamen = async () => {
-            await fetch(`http://localhost:4000/app/ramen/show/${id}`)
-            .then((response) => response.json())
-            .then((data) => {
-                setRamen(data);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            })
-            };
-            fetchRamen();
-        }
-    , [id]);
+    // useEffect(() => {
+    //     const fetchRamen = async () => {
+    //         await fetch(`http://localhost:4000/app/ramen/show/${id}`)
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             setRamen(data);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err.message);
+    //         })
+    //         };
+    //         fetchRamen();
+    //     }
+    // , [id]);
         
 
         const deleteRamen = async (id) => {

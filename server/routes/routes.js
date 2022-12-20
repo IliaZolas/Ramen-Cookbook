@@ -4,6 +4,7 @@ const newUserTemplateCopy = require('../models/users')
 const newRamenTemplateCopy = require('../models/ramens')
 const Ramens = require('../models/ramens')
 const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId;
 
 // Index Routes
 
@@ -62,18 +63,10 @@ routes.post('/app/ramen/add', (req, res) =>{
     }) 
 })
 
-routes.get(`/app/ramen/show/:id`, (req, res) => {
-    const ramenID = req.params
-    console.log("GET SINGLE RECORD:", ramenID)
-
-    Ramens.findOne({_id: ramenID},
-        function (err, _result) {
-            if (err) {
-                res.status(400);
-            } else {
-                console.log("1 document retreived");
-            }
-        })
+routes.get(`/app/ramen/show/:id`, async (req, res) => {
+    const id = ObjectId(req.params.id)
+    console.log("GET SINGLE RECORD:", id)
+    await Ramens.findOne({id: id})
     .then(data => res.json(data))
 })
 
