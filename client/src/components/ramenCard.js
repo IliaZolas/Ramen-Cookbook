@@ -37,7 +37,16 @@ const RamenCard = () => {
             navigate('/ramen');
         };
 
-    const viewRamen = (id) => {
+    const viewRamen = async (id) => {
+        // await fetch(`http://localhost:4000/app/ramen/show/${id}`, {
+        //     method: 'GET',
+        //     }).then((response) => {            
+        //         if (response.status === 200) {
+        //             setRamen();
+        //             } else {
+        //                 return;
+        //             }
+        //         });
         console.log("this is id", id);
         navigate(`/ramen/show/${id}`);
     };

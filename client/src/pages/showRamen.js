@@ -6,21 +6,27 @@ const ShowRamen = () => {
     const navigate = useNavigate();
     const params = useParams();
     const id = params.id;
+    console.log("this is the id on show page:", id)
 
-    // useEffect(() => {
-    //     const fetchRamen = async () => {
-    //         await fetch(`http://localhost:4000/app/ramen/show/${id}`)
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             setRamen(data);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err.message);
-    //         })
-    //         };
-    //         fetchRamen();
-    //     }
-    // , [id]);
+    useEffect(() => {
+        const id = params.id;
+        console.log("this is the id in useEffect:", id)
+
+        const fetchRamen = async (id) => {
+            await fetch(`http://localhost:4000/app/ramen/show/${id}`, {
+                method: 'GET',
+                }).then((response) => {            
+                    if (response.status === 200) {
+                        setRamen();
+                        console.log("this is the data in ramen", response)
+                        } else {
+                            return;
+                        }
+                    });
+                };
+            fetchRamen();
+        }
+    );
         
 
         const deleteRamen = async (id) => {

@@ -63,10 +63,10 @@ routes.post('/app/ramen/add', (req, res) =>{
     }) 
 })
 
-routes.get(`/app/ramen/show/:id`, async (req, res) => {
-    const id = ObjectId(req.params.id)
-    console.log("GET SINGLE RECORD:", id)
-    await Ramens.findOne({id: id})
+routes.get('/app/ramen/show/:id', (req, res) => {
+    const ramenId = req.params.id
+    console.log("GET SINGLE RECORD :", ramenId)
+    Ramens.findOne({_id: ramenId.id})
     .then(data => res.json(data))
 })
 
