@@ -64,10 +64,12 @@ routes.post('/app/ramen/add', (req, res) =>{
 })
 
 routes.get('/app/ramen/show/:id', (req, res) => {
-    const ramenId = req.params.id
-    console.log("GET SINGLE RECORD:", ramenId)
-    Ramens.findOne({_id: ramenId})
-    .then(data => res.json(data))
+        const ramenId = req.params.id
+        console.log("GET SINGLE RECORD:", ramenId)
+
+        Ramens.findOne({_id: ramenId})
+        .then(data => res.json(data))
+        
 })
 
 routes.get('/app/ramen', (req, res) => {
