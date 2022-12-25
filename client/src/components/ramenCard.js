@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './ramencard.css'
 
 
@@ -7,6 +7,7 @@ import './ramencard.css'
 const RamenCard = () => {
     const [ramens, setRamen] = useState([]);
     const navigate = useNavigate();
+    const params = useParams();
     
     useEffect(() => {
         fetch('http://localhost:4000/app/ramen')
@@ -21,32 +22,22 @@ const RamenCard = () => {
         }, []);
 
     const deleteRamen = async (id) => {
+        console.log(id)
+
         await fetch(`http://localhost:4000/app/ramen/delete/${id}`, {
         method: 'DELETE',
         }).then((response) => {            
             if (response.status === 200) {
-                setRamen(
-                    ramens.filter((ramen) => {
-                        return ramen.id !== id;
-                    })
-                );
+                setRamen();
+                console.log("Ramen deleted");
                 } else {
-                    return;
+                    console.log("Ramen not deleted");
                 }
             });
             navigate('/ramen');
         };
 
     const viewRamen = async (id) => {
-        // await fetch(`http://localhost:4000/app/ramen/show/${id}`, {
-        //     method: 'GET',
-        //     }).then((response) => {            
-        //         if (response.status === 200) {
-        //             setRamen();
-        //             } else {
-        //                 return;
-        //             }
-        //         });
         console.log("this is id", id);
         navigate(`/ramen/show/${id}`);
     };
@@ -69,7 +60,7 @@ const RamenCard = () => {
                         <div className="card-button-area">
                             <div className="show-button button" onClick={() => viewRamen(ramen._id)} >View</div>
                             <div className="update-button button" onClick={() => updateRamen(ramen._id)} >Update</div>
-                            <div className="delete-button button" onClick={() => deleteRamen(ramen._id)} >Delete</div>
+                            <div className="delete-button button" onClick={() => deleteRamen(ramen._id)} id={ramen.id}>Delete</div>
                         </div>
                     </div>
                     );
