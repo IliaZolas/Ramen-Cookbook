@@ -90,8 +90,8 @@ routes.put('/app/ramen/update/:id', (req, res) => {
 })
 
 routes.delete('/app/ramen/delete/:id', (req, res) => {
-    const ramenID = req.params
-    console.log(ramenID)
+    const ramenID = req.params._id
+    console.log(ramenID,"delete console message")
 
     Ramens.deleteOne(ramenID, function (err, _result) {
         if (err) {
