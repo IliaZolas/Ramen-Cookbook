@@ -53,9 +53,8 @@ const RamenCard = () => {
                 {ramens.map((ramen) => {
                 return (
                     <div id={ramen._id} className="ramen-card" >
-                        <h1>{ramen._id}. {ramen.title}</h1>
+                        <h1>{ramen.title}</h1>
                         <h2>{ramen.ingredients}</h2>
-                        <h2>{ramen._id}</h2>
                         <p className="">{ramen.description}</p>
                         <div className="card-button-area">
                             <div className="show-button button" onClick={() => viewRamen(ramen._id)} >View</div>

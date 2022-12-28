@@ -77,14 +77,15 @@ routes.get('/app/ramen', (req, res) => {
     .then(data => res.json(data))
 })
 
+
 routes.put('/app/ramen/update/:id', (req, res) => {
     Ramens.updateOne({
-        // id: req.body._id,
+        id: req.body.id,
         title:req.body.title,
         description:req.body.description,
         ingredients:req.body.ingredients
     })
-    .then(result => {
+    .then(res => {
         res.status(200).json({ message: "Update successful!" });
     })
 })

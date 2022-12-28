@@ -25,11 +25,9 @@ const ShowRamen = () => {
         },
     []);
         
-
         const deleteRamen = () => {
             const id = params.id;
             console.log("this is the id in deleteRamen:", id)
-
             fetch(`http://localhost:4000/app/ramen/delete/${id}`, {
             method: 'DELETE',
             }).then((response) => {            
