@@ -38,7 +38,7 @@ const updateRamen = async (id, title, ingredients, description) => {
 
     const handleSubmit = (id) => {
         updateRamen(id, title, ingredients, description );
-        navigate(`/ramen/show/${id}`);
+        navigate(`/ramen/show/${id.id}`);
         
     };
     

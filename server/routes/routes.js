@@ -91,14 +91,14 @@ routes.put('/app/ramen/update/:id', (req, res) => {
 })
 
 routes.delete('/app/ramen/delete/:id', (req, res) => {
-    const ramenID = req.params._id
-    console.log(ramenID,"delete console message")
+    const ramenId = req.params.id
+    console.log(ramenId,":delete route")
 
-    Ramens.deleteOne(ramenID, function (err, _result) {
+    Ramens.deleteOne({_id: ramenId}, function (err, _result) {
         if (err) {
-            res.status(400).send(`Error deleting listing with id ${ramenID.id}!`);
+            res.status(400).send(`Error deleting listing with id ${ramenId}!`);
         } else {
-            console.log("1 document deleted");
+            console.log(`${ramenId} document deleted`);
         }
     })
 })

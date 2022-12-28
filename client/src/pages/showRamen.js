@@ -5,38 +5,31 @@ const ShowRamen = () => {
     const [ramen, setRamen] = useState([]);
     const navigate = useNavigate();
     const params = useParams();
-    const id = params.id;
-    console.log("this is the id on show page:", id)
 
     useEffect(() => {
         const id = params.id;
-        console.log("this is the id in useEffect:", id)
 
         fetch(`http://localhost:4000/app/ramen/show/${id}`, {
             method: 'GET',
             }).then((response) => response.json())
             .then((data) => {
-                console.log("THIS IS DATA:", data);
                 setRamen(data);
             })
             .catch((err) => {
                 console.log(err.message);
             });
         },
-    []);
+        []);
         
         const deleteRamen = () => {
             const id = params.id;
             console.log("this is the id in deleteRamen:", id)
+
             fetch(`http://localhost:4000/app/ramen/delete/${id}`, {
             method: 'DELETE',
             }).then((response) => {            
                 if (response.status === 200) {
-                    setRamen(
-                        ramen.filter((ramen) => {
-                            return ramen.id !== id;
-                        })
-                    );
+                    setRamen();
                     } else {
                         return;
                     }
@@ -58,7 +51,7 @@ const ShowRamen = () => {
                         <h2 className="">{ramen.ingredients}</h2>
                         <p className="">{ramen.description}</p>
                         <div className="">
-                            <div className="delete-button" style={ {background: "red", color: "white", width: "200px", textAlign: "center", margin:"auto"}} onClick={() => deleteRamen(ramen.id)} >Delete</div>
+                            <div className="delete-button" style={ {background: "red", color: "white", width: "200px", textAlign: "center", margin:"auto"}} onClick={() => deleteRamen(ramen._id)} >Delete</div>
                             <div className="delete-button" style={ {background: "green", color: "white", width: "200px", textAlign: "center", margin:"auto", marginTop: "10px"}} onClick={() => allRamens()}>Back to list</div>
                         </div>
                     </div>

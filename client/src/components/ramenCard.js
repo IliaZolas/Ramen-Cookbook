@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './ramencard.css'
 
 
@@ -7,7 +7,6 @@ import './ramencard.css'
 const RamenCard = () => {
     const [ramens, setRamen] = useState([]);
     const navigate = useNavigate();
-    const params = useParams();
     
     useEffect(() => {
         fetch('http://localhost:4000/app/ramen')
@@ -22,7 +21,7 @@ const RamenCard = () => {
         }, []);
 
     const deleteRamen = async (id) => {
-        console.log(id)
+        console.log("delete:",id)
 
         await fetch(`http://localhost:4000/app/ramen/delete/${id}`, {
         method: 'DELETE',
