@@ -79,15 +79,15 @@ routes.get('/app/ramen', (req, res) => {
 
 
 routes.put('/app/ramen/update/:id', (req, res) => {
-    Ramens.updateOne({
-        id: req.body._id,
-        title:req.body.title,
+    const ramenId = req.params.id
+    console.log(ramenId, "update ramen id route")
+
+    Ramens.updateOne({_id: ramenId},
+        {title:req.body.title,
         description:req.body.description,
         ingredients:req.body.ingredients
     })
-    .then(res => {
-        res.status(200).json({ message: "Update successful!" });
-    })
+    .then(data => res.json(data))
 })
 
 routes.delete('/app/ramen/delete/:id', (req, res) => {
