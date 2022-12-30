@@ -80,7 +80,7 @@ routes.get('/app/ramen', (req, res) => {
 
 routes.put('/app/ramen/update/:id', (req, res) => {
     Ramens.updateOne({
-        id: req.body.id,
+        id: req.body._id,
         title:req.body.title,
         description:req.body.description,
         ingredients:req.body.ingredients
@@ -102,6 +102,7 @@ routes.delete('/app/ramen/delete/:id', (req, res) => {
         }
     })
 })
+
 
 
 module.exports = routes

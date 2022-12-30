@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from "react";
 import "./ramenForm.css"
 
@@ -10,6 +10,7 @@ const UpdateRamenForm = () => {
     const [ingredients, setIngredients ] = useState('');
     const [description, setDescription ] = useState('');
     const navigate = useNavigate();
+    const params = useParams();
 
 const updateRamen = async (id, title, ingredients, description) => {
     await fetch(`http://localhost:4000/app/ramen/update/${id}`, {
@@ -36,9 +37,10 @@ const updateRamen = async (id, title, ingredients, description) => {
     });
 }
 
-    const handleSubmit = (id) => {
+    const handleSubmit = () => {
+        const id = params.id
         updateRamen(id, title, ingredients, description );
-        navigate(`/ramen/show/${id.id}`);
+        navigate(`/ramen/show/${id}`);
         
     };
     
