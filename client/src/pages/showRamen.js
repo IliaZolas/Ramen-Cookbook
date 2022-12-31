@@ -54,10 +54,10 @@ const ShowRamen = () => {
                         <h1>{ramen.title}</h1>
                         <h2 className="">{ramen.ingredients}</h2>
                         <p className="">{ramen.description}</p>
-                        <div className="">
-                            <div className="delete-button" style={ {background: "red", color: "white", width: "200px", textAlign: "center", margin:"auto"}} onClick={() => deleteRamen(ramen._id)} >Delete</div>
-                            <div className="delete-button" style={ {background: "green", color: "white", width: "200px", textAlign: "center", margin:"auto", marginTop: "10px"}} onClick={() => allRamens()}>Back to list</div>
+                        <div className="card-button-area">
+                            <div className="show-button button" onClick={() => allRamens()} >Back to list</div>
                             <div className="update-button button" onClick={() => updateRamen(ramen._id)} >Update</div>
+                            <div className="delete-button button" onClick={() => deleteRamen(ramen._id)} id={ramen.id}>Delete</div>
                         </div>
                     </div>
 
