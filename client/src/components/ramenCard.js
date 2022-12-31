@@ -18,7 +18,7 @@ const RamenCard = () => {
             .catch((err) => {
                 console.log(err.message);
             });  
-        }, []);
+        }, [ramens]);
 
     const deleteRamen = async (id) => {
         console.log("delete:",id)
@@ -33,7 +33,7 @@ const RamenCard = () => {
                     console.log("Ramen not deleted");
                 }
             });
-            navigate('/ramen');
+            // navigate('/ramen');
         };
 
     const viewRamen = async (id) => {
