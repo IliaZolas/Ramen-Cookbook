@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./ramenForm.css"
 
 
@@ -12,30 +12,48 @@ const UpdateRamenForm = () => {
     const navigate = useNavigate();
     const params = useParams();
 
-const updateRamen = async (id, title, ingredients, description) => {
-    await fetch(`http://localhost:4000/app/ramen/update/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({
-            title: title,
-            ingredients: ingredients,
-            description: description
-        }),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8'
+    useEffect(() => {
+        const id = params.id;
+        // console.log(id, "useEffect")
+        fetch(`http://localhost:4000/app/ramen/show/${id}`, {
+            method: 'GET',
+            }).then((response) => response.json())
+            .then((data) => {
+                setTitle(data.title);
+                setIngredients(data.ingredients);
+                setDescription(data.description);
+                // console.log(data.title, data.ingredients, "data from useEffect")
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
         },
-        })
-        .then((response) => { 
-            response.json();
-        })
-        .then(() => {
-        setTitle();
-        setIngredients();
-        setDescription();
-        })
-        .catch((err) => {
-        console.log(err.message , ":error message");
-    });
-}
+        []);
+
+    const updateRamen = async (id, title, ingredients, description) => {
+        await fetch(`http://localhost:4000/app/ramen/update/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                title: title,
+                ingredients: ingredients,
+                description: description
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            },
+            })
+            .then((response) => { 
+                response.json();
+            })
+            .then(() => {
+            setTitle();
+            setIngredients();
+            setDescription();
+            })
+            .catch((err) => {
+            console.log(err.message , ":error message");
+        });
+    }
 
     const handleSubmit = () => {
         const id = params.id
@@ -52,7 +70,7 @@ const updateRamen = async (id, title, ingredients, description) => {
             <input 
                 type="text" 
                 name="title" 
-                placeholder="title"
+                placeholder={title}
                 onChange={e => setTitle(e.target.value)} />
         </label>
         <label className="labels">
@@ -60,7 +78,7 @@ const updateRamen = async (id, title, ingredients, description) => {
             <input 
                 type="text" 
                 name="ingredients" 
-                placeholdere="ingredients"
+                placeholder={ingredients}
                 onChange={e => setIngredients(e.target.value)} />
         </label>
         <label className="labels">
@@ -68,7 +86,7 @@ const updateRamen = async (id, title, ingredients, description) => {
             <textarea 
                 type="text" 
                 name="description" 
-                placeholder="description"
+                placeholder={description}
                 onChange={e => setDescription(e.target.value)} />
         </label>
         <input type="submit" value="Submit" className="primary-submit-button" />

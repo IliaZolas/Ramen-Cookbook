@@ -18,7 +18,7 @@ const RamenCard = () => {
             .catch((err) => {
                 console.log(err.message);
             });  
-        }, [ramens]);
+        }, []);
 
     const deleteRamen = async (id) => {
         console.log("delete:",id)
