@@ -6,18 +6,15 @@ const AddRamen = () => {
     const [title, setTitle ] = useState('');
     const [ingredients, setIngredients ] = useState('');
     const [description, setDescription ] = useState('');
-    // const [id, setID ] = useState('');
     const navigate = useNavigate();
 
     const AddRamen = async ( title, ingredients, description) => {
         await fetch('http://localhost:4000/app/ramen/add', {
         method: 'POST',
         body: JSON.stringify({
-            // id: id,
             title: title,
             ingredients: ingredients,
             description: description,
-            // userId: Math.random().toString(36).slice(2),
         }),
         headers: {
             'Content-type': 'application/json; charset=UTF-8'
@@ -31,7 +28,6 @@ const AddRamen = () => {
         setTitle();
         setIngredients();
         setDescription();
-        // setID();
         })
         .catch((err) => {
         console.log(err.message , ":error message");
@@ -59,7 +55,7 @@ const handleSubmit = (e) => {
             <input 
                 type="text" 
                 name="ingredients" 
-                placeholdere="ingredients"
+                placeholder="ingredients"
                 onChange={e => setIngredients(e.target.value)} />
         </label>
         <label className="labels">
@@ -70,14 +66,6 @@ const handleSubmit = (e) => {
                 placeholder="description"
                 onChange={e => setDescription(e.target.value)} />
         </label>
-        {/* <label className="labels">
-            ID
-        <input 
-                type="text" 
-                name="iid" 
-                placeholdere="id"
-                onChange={e => setID(e.target.value)} />
-                </label> */}
         <input type="submit" value="Submit" className="primary-submit-button" />
     </form>
     );
