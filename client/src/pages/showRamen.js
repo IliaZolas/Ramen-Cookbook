@@ -41,6 +41,10 @@ const ShowRamen = () => {
                 navigate('/ramen');
             }
 
+            const updateRamen = (id) => {
+                navigate(`/ramen/update/${id}`);
+            };
+
     return (
         <div className="">
             <div className="">
@@ -53,6 +57,7 @@ const ShowRamen = () => {
                         <div className="">
                             <div className="delete-button" style={ {background: "red", color: "white", width: "200px", textAlign: "center", margin:"auto"}} onClick={() => deleteRamen(ramen._id)} >Delete</div>
                             <div className="delete-button" style={ {background: "green", color: "white", width: "200px", textAlign: "center", margin:"auto", marginTop: "10px"}} onClick={() => allRamens()}>Back to list</div>
+                            <div className="update-button button" onClick={() => updateRamen(ramen._id)} >Update</div>
                         </div>
                     </div>
 
