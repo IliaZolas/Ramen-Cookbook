@@ -52,6 +52,9 @@ const RamenCard = () => {
                 {ramens.map((ramen) => {
                 return (
                     <div id={ramen._id} className="ramen-card" >
+                        <div class="card-image-container">
+                            <img src="" alt="" />
+                        </div>
                         <h1>{ramen.title}</h1>
                         <h2>{ramen.ingredients}</h2>
                         <p className="">{ramen.description}</p>

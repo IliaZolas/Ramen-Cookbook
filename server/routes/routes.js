@@ -83,11 +83,12 @@ routes.put('/app/ramen/update/:id', (req, res) => {
     console.log(ramenId, "update ramen id route")
 
     Ramens.updateOne({_id: ramenId},
-        {title:req.body.title,
+        {
+        title:req.body.title,
         description:req.body.description,
         ingredients:req.body.ingredients
-    })
-    .then(data => res.json(data))
+        })
+        .then(data => res.json(data))
 })
 
 routes.delete('/app/ramen/delete/:id', (req, res) => {

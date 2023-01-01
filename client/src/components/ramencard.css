@@ -38,3 +38,8 @@
 .update-button {
     background-color: blue;
 }
+
+.card-image-container {
+    background-color: grey;
+    height: 200px;
+}
