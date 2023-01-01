@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
+import "./showramen.css"
 
 const ShowRamen = () => {
     const [ramen, setRamen] = useState([]);
@@ -50,6 +51,9 @@ const ShowRamen = () => {
             <div className="">
                 Show {ramen.title}
                     <div className="" style={{padding: "10px", background: "grey", width: "400px", margin: "auto", marginBottom: "25px"}}>
+                        <div className="show-image-container">  
+                            <img src="" alt="" />
+                        </div>
                         <h1>{ramen.id}</h1>
                         <h1>{ramen.title}</h1>
                         <h2 className="">{ramen.ingredients}</h2>
