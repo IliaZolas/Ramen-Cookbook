@@ -16,11 +16,14 @@ const newRamenTemplate = new mongoose.Schema ({
         }
         ,
        id:{
-            // type:String,
             type:mongoose.Types.ObjectId,
             required:false
         }
         ,
+        image: {
+            type: String,
+            required:true
+        }
         // date:{
         //     type:Date,
         //     default:Date.now
