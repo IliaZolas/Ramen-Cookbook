@@ -3,8 +3,10 @@ const routes = express.Router()
 const newUserTemplateCopy = require('../models/users')
 const newRamenTemplateCopy = require('../models/ramens')
 const Ramens = require('../models/ramens')
-const mongoose = require('mongoose')
-const ObjectId = mongoose.Types.ObjectId;
+const AWS = require('aws-sdk')
+// const mongoose = require('mongoose')
+// const ObjectId = mongoose.Types.ObjectId
+
 
 // Index Routes
 
@@ -44,6 +46,8 @@ routes.delete('/user/:id', (req, res) => {
 })
 
 // Ramen Routes
+// Creating a new instance of S3:
+const s3 = new AWS.S3();
 
 routes.post('/app/ramen/add', (req, res) =>{
     const newRamen = new newRamenTemplateCopy({

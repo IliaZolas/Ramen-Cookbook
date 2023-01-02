@@ -9,10 +9,6 @@ const AddRamen = () => {
     const [file, setFile] = useState()
     const navigate = useNavigate();
 
-    function handleChange(event) {
-        setFile(event.target.files[0])
-      }
-
     const AddRamen = async ( title, ingredients, description) => {
         await fetch('http://localhost:4000/app/ramen/add', {
         method: 'POST',
@@ -75,7 +71,7 @@ const handleSubmit = (e) => {
                     placeholder="description"
                     onChange={e => setDescription(e.target.value)} />
             </label>
-            <input type="file" onChange={handleChange}/>
+            <input type="file" />
             <input type="submit" value="Submit" className="primary-submit-button" />
         </form>
     </div>
