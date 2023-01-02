@@ -9,13 +9,14 @@ const AddRamen = () => {
     const [file, setFile] = useState()
     const navigate = useNavigate();
 
-    const AddRamen = async ( title, ingredients, description) => {
+    const AddRamen = async ( title, ingredients, description, file) => {
         await fetch('http://localhost:4000/app/ramen/add', {
         method: 'POST',
         body: JSON.stringify({
             title: title,
             ingredients: ingredients,
             description: description,
+            file: file,
         }),
         headers: {
             'Content-type': 'application/json; charset=UTF-8'
@@ -29,16 +30,17 @@ const AddRamen = () => {
         setTitle();
         setIngredients();
         setDescription();
+        setFile();
         })
         .catch((err) => {
         console.log(err.message , ":error message");
     });
-    navigate('/ramen');
+    // navigate('/ramen');
 };
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    AddRamen( title, ingredients, description );
+    AddRamen( title, ingredients, description, file );
 };
 
     return (
@@ -46,7 +48,7 @@ const handleSubmit = (e) => {
         <div className="form-image-container">
 
         </div>
-        <form method="post" onSubmit={handleSubmit}>
+        <form method="post" onSubmit={handleSubmit} enctype="multipart/form-data">
             <label className="labels">
                 Title
                 <input 
@@ -71,7 +73,10 @@ const handleSubmit = (e) => {
                     placeholder="description"
                     onChange={e => setDescription(e.target.value)} />
             </label>
-            <input type="file" />
+            <label className="labels">
+                Image
+                <input type="file" name="ramen" onChange={e => setFile(e.target.value)}/>
+            </label>
             <input type="submit" value="Submit" className="primary-submit-button" />
         </form>
     </div>

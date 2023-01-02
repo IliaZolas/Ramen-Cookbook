@@ -4,6 +4,8 @@ const newUserTemplateCopy = require('../models/users')
 const newRamenTemplateCopy = require('../models/ramens')
 const Ramens = require('../models/ramens')
 const AWS = require('aws-sdk')
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 // const mongoose = require('mongoose')
 // const ObjectId = mongoose.Types.ObjectId
 
@@ -54,12 +56,13 @@ routes.post('/app/ramen/add', (req, res) =>{
         // _id: req.body.id,
         title:req.body.title,
         description:req.body.description,
-        ingredients:req.body.ingredients
+        ingredients:req.body.ingredients,
+        file: req.body.file
     })
     newRamen.save()
     .then(data =>{
         res.json(data)
-        console.log("Send request successful")
+        console.log("Send request successful:", data)
     })
     .catch(error => {
         res.json(error)
