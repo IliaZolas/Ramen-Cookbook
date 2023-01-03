@@ -4,10 +4,8 @@ const newUserTemplateCopy = require('../models/users')
 const newRamenTemplateCopy = require('../models/ramens')
 const Ramens = require('../models/ramens')
 const AWS = require('aws-sdk')
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
-// const mongoose = require('mongoose')
-// const ObjectId = mongoose.Types.ObjectId
+const upload = require('../middleware/multer-aws')
+
 
 
 // Index Routes
@@ -48,16 +46,18 @@ routes.delete('/user/:id', (req, res) => {
 })
 
 // Ramen Routes
-// Creating a new instance of S3:
-const s3 = new AWS.S3();
+
+routes.post('/app/ramen/upload', upload.any('file'), (req,res) => {
+    console.log("req.files", req.files)
+    return res.status(200).send(req.files)
+})
 
 routes.post('/app/ramen/add', (req, res) =>{
     const newRamen = new newRamenTemplateCopy({
-        // _id: req.body.id,
         title:req.body.title,
         description:req.body.description,
         ingredients:req.body.ingredients,
-        file: req.body.file
+        // file: req.body.file
     })
     newRamen.save()
     .then(data =>{

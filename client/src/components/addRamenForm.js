@@ -9,6 +9,24 @@ const AddRamen = () => {
     const [file, setFile] = useState()
     const navigate = useNavigate();
 
+    // const uploadImage = async (file) => {
+//         await fetch('http://localhost:4000/app/ramen/upload', {
+//         method: 'POST',
+//         body: ({
+//             file: file,
+//         })
+//         })
+//         .then((response) => { 
+//             console.log("upload file:",response.json());
+//         })
+//         .then(() => {
+//         setFile();
+//         })
+//         .catch((err) => {
+//         console.log(err.message , ":error message");
+//     });
+// }
+
     const AddRamen = async ( title, ingredients, description, file) => {
         await fetch('http://localhost:4000/app/ramen/add', {
         method: 'POST',
@@ -23,8 +41,7 @@ const AddRamen = () => {
         },
         })
         .then((response) => { 
-            console.log("prom:",response.json());
-            console.log("promise:",response);
+            console.log(response.json());
         })
         .then(() => {
         setTitle();
@@ -40,7 +57,8 @@ const AddRamen = () => {
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    AddRamen( title, ingredients, description, file );
+    // uploadImage(file);
+    AddRamen( title, ingredients, description );
 };
 
     return (
