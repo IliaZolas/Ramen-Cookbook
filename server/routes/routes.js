@@ -47,17 +47,29 @@ routes.delete('/user/:id', (req, res) => {
 
 // Ramen Routes
 
-routes.post('/app/ramen/upload', upload.any('file'), (req,res) => {
-    console.log("req.files", req.files)
-    return res.status(200).send(req.files)
+// S3
+// routes.post('/app/ramen/upload', upload.any('images'), (req,res) => {
+//     console.log("req.files:", req.files)
+//     return res.status(200).send(req.files)
+// })
+
+// Cloudinary
+routes.post('/app/ramen/upload', (req,res) => {
+    console.log("Cloudinary:", req)
 })
+
+// routes.get('/app/ramen/upload/latest', async (req, res) => {
+//     const getImage = await Ramens.findOne().sort({ _id: -1 });
+//     res.json(getImage.imageUrl);
+//   });
+
 
 routes.post('/app/ramen/add', (req, res) =>{
     const newRamen = new newRamenTemplateCopy({
         title:req.body.title,
         description:req.body.description,
         ingredients:req.body.ingredients,
-        // file: req.body.file
+        imageUrl: req.body.imageUrl
     })
     newRamen.save()
     .then(data =>{
