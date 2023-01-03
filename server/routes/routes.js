@@ -55,7 +55,7 @@ routes.delete('/user/:id', (req, res) => {
 
 // Cloudinary
 routes.post('/app/ramen/upload', (req,res) => {
-    console.log("Cloudinary:", req)
+    
 })
 
 // routes.get('/app/ramen/upload/latest', async (req, res) => {

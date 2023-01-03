@@ -11,10 +11,12 @@ const AddRamen = () => {
     const [imageUrl, setImageUrl] = useState('');
     const navigate = useNavigate();
 
+    // console.log("image url in state:",imageUrl);
+
     const uploadUrl = `https://api.cloudinary.com/v1_1/iliacloud9/image/upload`
 
     const uploadImage = async (files) => {
-        console.log("file:",files.target.files[0]);
+        // console.log("file being uploaded:",files.target.files[0]);
 
         const formData = new FormData()
         formData.append("file", files.target.files[0])
@@ -24,12 +26,11 @@ const AddRamen = () => {
             method: 'POST',
             body: formData
             })
-            .then((response) => {
-            console.log("uploadImage response",response);
-            setImageUrl(formData);
-            console.log(formData);
-        });
-}
+            .then(async (response) => {
+            const data = await response.json();
+            setImageUrl(data.secure_url)
+            })            
+        };
 
     const AddRamen = async ( title, ingredients, description, imageUrl) => {
         await fetch('http://localhost:4000/app/ramen/add', {
@@ -52,12 +53,11 @@ const AddRamen = () => {
         setIngredients();
         setDescription();
         // setImageUrl();
-        // setRamen();
         })
         .catch((err) => {
         console.log(err.message , ":error message");
     });
-    // navigate('/ramen');
+    navigate('/ramen');
 };
 
 const handleSubmit = (e) => {
@@ -69,10 +69,8 @@ const handleSubmit = (e) => {
     return (
     <div>
         <div className="form-image-container">
-            <Image 
-                cloudName="iliacloud9"
-                publicId={imageUrl}
-                />
+          <img src={imageUrl} alt="ramen" />
+          <Image cloudName="iliacloud9" publicId={imageUrl} />
         </div>
         <form method="post" onSubmit={handleSubmit} enctype="multipart/form-data">
             <label className="labels">
