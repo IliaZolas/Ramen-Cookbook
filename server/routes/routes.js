@@ -5,8 +5,7 @@ const newRamenTemplateCopy = require('../models/ramens')
 const Ramens = require('../models/ramens')
 const AWS = require('aws-sdk')
 const upload = require('../middleware/multer-aws')
-
-
+const cloudinary = require('cloudinary')
 
 // Index Routes
 
@@ -69,7 +68,8 @@ routes.post('/app/ramen/add', (req, res) =>{
         title:req.body.title,
         description:req.body.description,
         ingredients:req.body.ingredients,
-        imageUrl: req.body.imageUrl
+        imageUrl: req.body.imageUrl,
+        public_id: req.body.publicId 
     })
     newRamen.save()
     .then(data =>{
@@ -110,7 +110,7 @@ routes.put('/app/ramen/update/:id', (req, res) => {
         .then(data => res.json(data))
 })
 
-routes.delete('/app/ramen/delete/:id', (req, res) => {
+routes.delete('/app/ramen/delete/:id/:public_id', (req, res) => {
     const ramenId = req.params.id
     console.log(ramenId,":delete route")
 
@@ -121,6 +121,19 @@ routes.delete('/app/ramen/delete/:id', (req, res) => {
             console.log(`${ramenId} document deleted`);
         }
     })
+    cloudinary.config({
+        cloud_name: process.env.CLOUD_NAME,
+        api_key: process.env.CLOUD_API_KEY,
+        api_secret: process.env.CLOUD_API_SECRET
+    })
+
+    const publicId = req.params.public_id
+    console.log("cloudinary check public_id for delete:", publicId)
+    
+    cloudinary.v2.uploader
+            .destroy(publicId)
+            .then(result=>console.log("cloudinary delete", result))
+            .catch(_err=> console.log("Something went wrong, please try again later."))
 })
 
 
