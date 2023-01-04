@@ -9,6 +9,7 @@ const AddRamen = () => {
     const [ingredients, setIngredients ] = useState('');
     const [description, setDescription ] = useState('');
     const [imageUrl, setImageUrl] = useState('');
+    const [publicId, setPublicId] = useState('');
     const navigate = useNavigate();
 
     // console.log("image url in state:",imageUrl);
@@ -29,17 +30,19 @@ const AddRamen = () => {
             .then(async (response) => {
             const data = await response.json();
             setImageUrl(data.secure_url)
+            setPublicId(data.public_id)
             })            
         };
 
-    const AddRamen = async ( title, ingredients, description, imageUrl) => {
+    const AddRamen = async ( title, ingredients, description, imageUrl, publicId) => {
         await fetch('http://localhost:4000/app/ramen/add', {
         method: 'POST',
         body: JSON.stringify({
             title: title,
             ingredients: ingredients,
             description: description,
-            imageUrl: imageUrl
+            imageUrl: imageUrl,
+            publicId: publicId
         }),
         headers: {
             'Content-type': 'application/json; charset=UTF-8'
@@ -63,7 +66,7 @@ const AddRamen = () => {
 const handleSubmit = (e) => {
     e.preventDefault();
     // uploadImage(file);
-    AddRamen( title, ingredients, description, imageUrl );
+    AddRamen( title, ingredients, description, imageUrl, publicId );
 };
 
     return (
@@ -107,6 +110,14 @@ const handleSubmit = (e) => {
                     name="imageUrl" 
                     value={imageUrl}
                     onChange={e => setImageUrl(e.target.value)} />
+            </label>
+            <label className="labels">
+                publicId
+                <textarea 
+                    type="textarea" 
+                    name="publicId" 
+                    value={publicId}
+                    onChange={e => setPublicId(e.target.value)} />
             </label>
             <input type="submit" value="Submit" className="primary-submit-button" />
         </form>

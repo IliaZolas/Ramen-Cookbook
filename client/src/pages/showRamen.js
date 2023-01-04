@@ -22,15 +22,18 @@ const ShowRamen = () => {
         },
         []);
         
-        const deleteRamen = () => {
-            const id = params.id;
-            console.log("this is the id in deleteRamen:", id)
+        const deleteRamen = async (id, public_id) => {
+            // const id = params.id;
+            // console.log("this is the id in deleteRamen:", id)
+            console.log("delete:",id)
+            console.log("delete:",public_id)
 
-            fetch(`http://localhost:4000/app/ramen/delete/${id}`, {
+            fetch(`http://localhost:4000/app/ramen/delete/${id}/${public_id}`, {
             method: 'DELETE',
             }).then((response) => {            
                 if (response.status === 200) {
                     setRamen();
+                    console.log("Ramen deleted");
                     } else {
                         return;
                     }
@@ -61,7 +64,7 @@ const ShowRamen = () => {
                         <div className="card-button-area">
                             <div className="show-button button" onClick={() => allRamens()} >Back to list</div>
                             <div className="update-button button" onClick={() => updateRamen(ramen._id)} >Update</div>
-                            <div className="delete-button button" onClick={() => deleteRamen(ramen._id)} id={ramen.id}>Delete</div>
+                            <div className="delete-button button" onClick={() => deleteRamen(ramen._id, ramen.public_id)} id={ramen.id}>Delete</div>
                         </div>
                     </div>
 

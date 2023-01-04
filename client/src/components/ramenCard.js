@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { cloudinary } from "cloudinary-core";
 import './ramencard.css'
 
 
@@ -20,10 +21,11 @@ const RamenCard = () => {
             });  
         }, []);
 
-    const deleteRamen = async (id) => {
+    const deleteRamen = async (id, public_id) => {
         console.log("delete:",id)
+        console.log("delete:",public_id)
 
-        await fetch(`http://localhost:4000/app/ramen/delete/${id}`, {
+        await fetch(`http://localhost:4000/app/ramen/delete/${id}/${public_id}`, {
         method: 'DELETE',
         }).then((response) => {            
             if (response.status === 200) {
@@ -33,7 +35,6 @@ const RamenCard = () => {
                     console.log("Ramen not deleted");
                 }
             });
-            // navigate('/ramen');
         };
 
     const viewRamen = async (id) => {
@@ -61,7 +62,7 @@ const RamenCard = () => {
                         <div className="card-button-area">
                             <div className="show-button button" onClick={() => viewRamen(ramen._id)} >View</div>
                             <div className="update-button button" onClick={() => updateRamen(ramen._id)} >Update</div>
-                            <div className="delete-button button" onClick={() => deleteRamen(ramen._id)} id={ramen.id}>Delete</div>
+                            <div className="delete-button button" onClick={() => deleteRamen(ramen._id, ramen.public_id)} id={ramen.id}>Delete</div>
                         </div>
                     </div>
                     );
