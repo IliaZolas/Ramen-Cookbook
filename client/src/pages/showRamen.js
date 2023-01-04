@@ -52,7 +52,7 @@ const ShowRamen = () => {
                 Show {ramen.title}
                     <div className="" style={{padding: "10px", background: "grey", width: "400px", margin: "auto", marginBottom: "25px"}}>
                         <div className="show-image-container">  
-                            <img src="" alt="" />
+                            <img src={ramen.imageUrl} style={{width: 400}} alt="" />
                         </div>
                         <h1>{ramen.id}</h1>
                         <h1>{ramen.title}</h1>
