@@ -122,7 +122,7 @@ const handleSubmit = (e) => {
             <input type="submit" value="Submit" className="primary-submit-button" />
         </form>
     </div>
-    );
-}
+    )
+};
 
 export default AddRamen;

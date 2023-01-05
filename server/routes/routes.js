@@ -105,7 +105,9 @@ routes.put('/app/ramen/update/:id', (req, res) => {
         {
         title:req.body.title,
         description:req.body.description,
-        ingredients:req.body.ingredients
+        ingredients:req.body.ingredients,
+        imageUrl: req.body.imageUrl,
+        public_id: req.body.publicId 
         })
         .then(data => res.json(data))
 })
