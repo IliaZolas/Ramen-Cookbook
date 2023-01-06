@@ -56,13 +56,15 @@ const RamenCard = () => {
                         <div class="card-image-container">
                             <img src={ramen.imageUrl} alt="" style={{width: 400}} />
                         </div>
-                        <h1>{ramen.title}</h1>
-                        <h2>{ramen.ingredients}</h2>
-                        <p className="">{ramen.description}</p>
-                        <div className="card-button-area">
-                            <div className="show-button button" onClick={() => viewRamen(ramen._id)} >View</div>
-                            <div className="update-button button" onClick={() => updateRamen(ramen._id)} >Update</div>
-                            <div className="delete-button button" onClick={() => deleteRamen(ramen._id, ramen.public_id)} id={ramen.id}>Delete</div>
+                        <div>
+                            <h1>{ramen.title}</h1>
+                            <h2>{ramen.ingredients}</h2>
+                            <p className="">{ramen.description}</p>
+                            <div className="card-button-area">
+                                <div className="show-button button" onClick={() => viewRamen(ramen._id)} >View</div>
+                                <div className="update-button button" onClick={() => updateRamen(ramen._id)} >Update</div>
+                                <div className="delete-button button" onClick={() => deleteRamen(ramen._id, ramen.public_id)} id={ramen.id}>Delete</div>
+                            </div>
                         </div>
                     </div>
                     );
