@@ -50,10 +50,10 @@ const ShowRamen = () => {
             };
 
     return (
-        <div className="">
+        <div className="show-ramen-container">
             <div className="">
                 Show {ramen.title}
-                    <div className="" style={{padding: "10px", background: "grey", width: "400px", margin: "auto", marginBottom: "25px"}}>
+                    <div className="" >
                         <div className="show-image-container">  
                             <img src={ramen.imageUrl} style={{width: 400}} alt="" />
                         </div>

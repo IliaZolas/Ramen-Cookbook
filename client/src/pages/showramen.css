@@ -1,4 +1,8 @@
 .show-image-container {
-    background-color: lightgrey;
-    height: 400px;
+   
+}
+
+.show-ramen-container {
+    width: 400px;
+    margin: auto;
 }

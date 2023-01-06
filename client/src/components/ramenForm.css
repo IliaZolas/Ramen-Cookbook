@@ -25,12 +25,17 @@ input {
 }
 
 .form-image-container {
-    background-color: grey;
-    height: 400px;
+    background-color: lightgrey;
+    height: 250px;
     width: 400px;
+    overflow: hidden;
     margin: auto;
 }
 
 .new-ramen-image {
     width:400px;
+}
+
+.hidden {
+    display: none;
 }
