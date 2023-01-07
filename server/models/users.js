@@ -17,11 +17,11 @@ const newUserTemplate = new mongoose.Schema ({
         password:{
             type:String,
             required:false
-        },
-        date:{
-            type:Date,
-            default:Date.now
         }
+        // date:{
+        //     type:Date,
+        //     default:Date.now
+        // }
 })
 
 module.exports = mongoose.model('usertable', newUserTemplate )
