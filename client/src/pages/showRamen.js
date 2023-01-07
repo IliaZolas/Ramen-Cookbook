@@ -52,7 +52,6 @@ const ShowRamen = () => {
     return (
         <div className="show-ramen-container">
             <div className="">
-                Show {ramen.title}
                     <div className="" >
                         <div className="show-image-container">  
                             <img src={ramen.imageUrl} style={{width: 400}} alt="" />
@@ -67,7 +66,6 @@ const ShowRamen = () => {
                             <div className="delete-button button" onClick={() => deleteRamen(ramen._id, ramen.public_id)} id={ramen.id}>Delete</div>
                         </div>
                     </div>
-
             </div>
         </div>
     );

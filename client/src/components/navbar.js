@@ -14,6 +14,9 @@ const Navbar = () => {
                 <Link to="/new-ramen" className="navitem">
                     Add a ramen
                 </Link>
+                <Link to="/signup" className="navitem">
+                    Signup
+                </Link>
             </div>
         </div>
     );

@@ -5,6 +5,7 @@ import Ramen from './pages/ramen';
 import NewRamen from './pages/newRamen';
 import UpdateRamen from './pages/updateRamen';
 import ShowRamen from './pages/showRamen';
+import AddUser from './pages/signup';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/new-ramen" element={<NewRamen />} />
           <Route path="/ramen/update/:id" element={<UpdateRamen />} />
           <Route path="/ramen/show/:id" element={<ShowRamen />} />
+          <Route path="/signup" element={<AddUser />} />
         </Routes>
       </div>
     </Router>

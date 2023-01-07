@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 
 
 const newUserTemplate = new mongoose.Schema ({ 
-        fname:{
+        name:{
             type:String,
             required:true,
         },
-        lname:{
+        surname:{
             type:String,
             required:true
         },

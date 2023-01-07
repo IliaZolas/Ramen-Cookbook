@@ -14,21 +14,23 @@ routes.get('/', (req, res) => {
 })
 
 // User Routes
-routes.post('/user/new', (request, response) =>{
-    const newUser = new newUserTemplateCopy({
-        fname:request.body.fname,
-        lname:request.body.lname,
-        email:request.body.email,
-        password:request.body.password
+routes.post('/app/signup', (req, res) =>{
+    const newUser = new newRamenTemplateCopy({
+        name: req.body.name,
+        surname: req.body.surname,
+        email: req.body.email,
+        password: req.body.password,
+        imageUrl: req.body.imageUrl,
+        publicId: req.body.publicId
     })
-    newUser.save()
+    newRamen.save()
     .then(data =>{
-        response.json(data)
-        console.log("Send request successful")
+        res.json(data)
+        console.log("Send request successful:", data)
     })
     .catch(error => {
-        response.json(error)
-        console.log("Send request failed")
+        res.json(error)
+        console.log("Send request failed", error)
     }) 
 })
 

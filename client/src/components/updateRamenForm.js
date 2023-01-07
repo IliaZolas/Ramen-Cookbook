@@ -123,7 +123,7 @@ const UpdateRamenForm = () => {
                 Image
                 <input type="file" name="ramen" onChange={uploadImage}/>
             </label>
-            <label className="labels">
+            <label className="labels hidden">
                 imageUrl
                 <textarea 
                     type="textarea" 
@@ -132,7 +132,7 @@ const UpdateRamenForm = () => {
                     placeholder={imageUrl}
                     onChange={e => setImageUrl(e.target.value)} />
             </label>
-            <label className="labels">
+            <label className="labels hidden">
                 publicId
                 <textarea 
                     type="textarea" 
