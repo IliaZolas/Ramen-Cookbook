@@ -39,3 +39,16 @@ input {
 .hidden {
     display: none;
 }
+
+.new-user-image {
+    border-radius: 50%;
+}
+
+.form-user-image-container {
+    border-radius: 50%;
+    background-color: lightgrey;
+    width: 250px;
+    height: 250px;
+    margin: auto;
+    margin-top: 30px;
+}

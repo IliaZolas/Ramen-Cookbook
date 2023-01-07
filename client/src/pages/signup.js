@@ -74,7 +74,7 @@ const handleSubmit = (e) => {
 
     return (
     <div>
-        <div className="form-image-container">
+        <div className="form-user-image-container">
             <Image className="new-user-image" cloudName="iliacloud9" publicId={imageUrl} />
         </div>
         <form method="post" onSubmit={handleSubmit} enctype="multipart/form-data">
