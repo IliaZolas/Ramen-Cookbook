@@ -6,6 +6,7 @@ const Ramens = require('../models/ramens')
 const AWS = require('aws-sdk')
 const upload = require('../middleware/multer-aws')
 const cloudinary = require('cloudinary')
+const bcrypt = require("bcrypt");
 
 // Index Routes
 
@@ -15,23 +16,59 @@ routes.get('/', (req, res) => {
 
 // User Routes
 routes.post('/app/signup', (req, res) =>{
-    const newUser = new newRamenTemplateCopy({
+
+    bcrypt
+    .hash(req.body.password, 10)
+    .then((hashedPassword) => {
+    const user = new newUserTemplateCopy({
         name: req.body.name,
         surname: req.body.surname,
         email: req.body.email,
-        password: req.body.password,
+        password: hashedPassword,
         imageUrl: req.body.imageUrl,
-        publicId: req.body.publicId
+        public_id: req.body.publicId
     })
-    newRamen.save()
-    .then(data =>{
-        res.json(data)
-        console.log("Send request successful:", data)
+
+    user
+        .save()
+        .then((result) => {
+        res.status(201).send({
+            message: "User Created Successfully",
+            result,
+        });
+        })
+        .catch((error) => {
+        res.status(500).send({
+            message: "Error creating user",
+            error,
+        });
+        });
     })
-    .catch(error => {
-        res.json(error)
-        console.log("Send request failed", error)
-    }) 
+    .catch((e) => {
+    res.status(500).send({
+        message: "Password was not hashed successfully",
+        e,
+    });
+    });
+
+    // const newUser = new newUserCopy({
+    //     name: req.body.name,
+    //     surname: req.body.surname,
+    //     email: req.body.email,
+    //     password: req.body.password,
+    //     imageUrl: req.body.imageUrl,
+    //     publicId: req.body.publicId
+    // })
+    // newUser.bcrypt.hash(req.body.password, 10)
+    // .then(data =>{
+    //     data.save()
+    //     res.json(data)
+    //     console.log("Send request successful:", data)
+    // })
+    // .catch(error => {
+    //     res.json(error)
+    //     console.log("Send request failed", error)
+    // }) 
 })
 
 routes.get('/:id', (request, response) => {

@@ -40,10 +40,6 @@ input {
     display: none;
 }
 
-.new-user-image {
-    border-radius: 50%;
-}
-
 .form-user-image-container {
     border-radius: 50%;
     background-color: lightgrey;

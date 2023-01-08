@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 // import ramens from "../../../server/models/ramens";
 import {Image} from 'cloudinary-react';
 import "../components/ramenForm.css"
+import "./signup.css"
 
 const AddUser = () => {
     const [name, setName ] = useState('');
@@ -63,7 +64,7 @@ const AddUser = () => {
         .catch((err) => {
         console.log(err.message , ":error message");
     });
-    navigate('/ramen');
+    // navigate('/ramen');
 };
 
 const handleSubmit = (e) => {
@@ -96,16 +97,16 @@ const handleSubmit = (e) => {
             </label>
             <label className="labels">
                 Email
-                <textarea 
-                    type="textarea" 
+                <input
+                    type="text" 
                     name="email" 
                     placeholder="email"
                     onChange={e => setEmail(e.target.value)} />
             </label>
             <label className="labels">
                 Password
-                <textarea 
-                    type="textarea" 
+                <input 
+                    type="text" 
                     name="password" 
                     placeholder="password"
                     onChange={e => setPassword(e.target.value)} />
@@ -116,16 +117,16 @@ const handleSubmit = (e) => {
             </label>
             <label className="labels hidden">
                 imageUrl
-                <textarea 
-                    type="textarea" 
+                <input
+                    type="text" 
                     name="imageUrl" 
                     value={imageUrl}
                     onChange={e => setImageUrl(e.target.value)} />
             </label>
             <label className="labels hidden">
                 publicId
-                <textarea 
-                    type="textarea" 
+                <input
+                    type="text" 
                     name="publicId" 
                     value={publicId}
                     onChange={e => setPublicId(e.target.value)} />
