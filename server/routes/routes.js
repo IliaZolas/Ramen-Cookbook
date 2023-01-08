@@ -3,11 +3,13 @@ const routes = express.Router()
 const newUserTemplateCopy = require('../models/users')
 const newRamenTemplateCopy = require('../models/ramens')
 const Ramens = require('../models/ramens')
+const Users = require('../models/users')
 const AWS = require('aws-sdk')
 const upload = require('../middleware/multer-aws')
 const cloudinary = require('cloudinary')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const auth = require("./auth");
 
 // Index Routes
 
@@ -53,10 +55,10 @@ routes.post('/app/signup', (req, res) =>{
     })
 })
 
-routes.get('/app/login', (req, res) => {
+routes.post('/app/login', (req, res) => {
     console.log("login route triggered")
     
-    User.findOne({ email: req.body.email })
+    Users.findOne({ email: req.body.email })
     .then((user) => {
     bcrypt
         .compare(req.body.password, user.password)
@@ -96,6 +98,10 @@ routes.get('/app/login', (req, res) => {
     })
     })
 })
+
+routes.get("/app/auth-endpoint", auth, (req, res) => {
+    res.json({ message: "You are authorized to access me" });
+  });
 
 
 
