@@ -99,9 +99,15 @@ routes.post('/app/login', (req, res) => {
     })
 })
 
-routes.get("/app/auth-endpoint", auth, (req, res) => {
-    res.json({ message: "You are authorized to access me" });
-  });
+// // free endpoint
+// app.get("/app/free-endpoint", (req, res) => {
+//     response.json({ message: "You are free to access me anytime" });
+//   });
+
+//   // auth endpoint
+// routes.get("/app/auth-endpoint", auth, (req, res) => {
+//     res.json({ message: "You are authorized to access me" });
+//   });
 
 
 
@@ -136,7 +142,7 @@ routes.post('/app/ramen/upload', (req,res) => {
 //   });
 
 
-routes.post('/app/ramen/add', (req, res) =>{
+routes.post('/app/ramen/add', auth, (req, res) =>{
     const newRamen = new newRamenTemplateCopy({
         title:req.body.title,
         description:req.body.description,
