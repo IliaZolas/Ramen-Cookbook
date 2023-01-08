@@ -7,6 +7,7 @@ const AWS = require('aws-sdk')
 const upload = require('../middleware/multer-aws')
 const cloudinary = require('cloudinary')
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 // Index Routes
 
@@ -48,28 +49,55 @@ routes.post('/app/signup', (req, res) =>{
     res.status(500).send({
         message: "Password was not hashed successfully",
         e,
-    });
-    });
-
-    // const newUser = new newUserCopy({
-    //     name: req.body.name,
-    //     surname: req.body.surname,
-    //     email: req.body.email,
-    //     password: req.body.password,
-    //     imageUrl: req.body.imageUrl,
-    //     publicId: req.body.publicId
-    // })
-    // newUser.bcrypt.hash(req.body.password, 10)
-    // .then(data =>{
-    //     data.save()
-    //     res.json(data)
-    //     console.log("Send request successful:", data)
-    // })
-    // .catch(error => {
-    //     res.json(error)
-    //     console.log("Send request failed", error)
-    // }) 
+    })
+    })
 })
+
+routes.get('/app/login', (req, res) => {
+    console.log("login route triggered")
+    
+    User.findOne({ email: req.body.email })
+    .then((user) => {
+    bcrypt
+        .compare(req.body.password, user.password)
+        .then((passwordCheck) => {
+        if(!passwordCheck) {
+            return res.status(400).send({
+            message: "Passwords does not match",
+            error,
+            })
+        }
+
+        const token = jwt.sign(
+            {
+            userId: user._id,
+            userEmail: user.email,
+            },
+            "RANDOM-TOKEN",
+            { expiresIn: "24h" }
+        )
+        res.status(200).send({
+            message: "Login Successful",
+            email: user.email,
+            token,
+        })
+        })
+        .catch((error) => {
+        res.status(400).send({
+            message: "Passwords does not match",
+            error,
+        });
+        });
+    })
+    .catch((e) => {
+    res.status(404).send({
+        message: "Email not found",
+        e,
+    })
+    })
+})
+
+
 
 routes.get('/:id', (request, response) => {
 

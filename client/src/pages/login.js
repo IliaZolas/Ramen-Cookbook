@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-// import ramens from "../../../server/models/ramens";
-import {Image} from 'cloudinary-react';
 import "../components/ramenForm.css"
 
 const LoginUser = () => {
@@ -32,7 +30,7 @@ const LoginUser = () => {
         .catch((err) => {
         console.log(err.message , ":error message");
     });
-    navigate('/ramen');
+    // navigate('/ramen');
 };
 
 const handleSubmit = (e) => {
@@ -46,16 +44,16 @@ const handleSubmit = (e) => {
         <form method="post" onSubmit={handleSubmit} enctype="multipart/form-data">
             <label className="labels">
                 Email
-                <textarea 
-                    type="textarea" 
+                <input 
+                    type="text" 
                     name="email" 
                     placeholder="email"
                     onChange={e => setEmail(e.target.value)} />
             </label>
             <label className="labels">
                 Password
-                <textarea 
-                    type="textarea" 
+                <input 
+                    type="text" 
                     name="password" 
                     placeholder="password"
                     onChange={e => setPassword(e.target.value)} />
