@@ -100,28 +100,6 @@ routes.post('/app/login', (req, res) => {
     })
 })
 
-// routes.post('/app/login', (req, res) => {
-
-// })
-
-// const logout = () => {
-//     // destroy the cookie
-//     cookies.remove("TOKEN", { path: "/" });
-//     // redirect user to the landing page
-//     window.location.href = "/";
-//   }
-
-// // free endpoint
-// app.get("/app/free-endpoint", (req, res) => {
-//     response.json({ message: "You are free to access me anytime" });
-//   });
-
-//   // auth endpoint
-// routes.get("/app/auth-endpoint", auth, (req, res) => {
-//     res.json({ message: "You are authorized to access me" });
-//   });
-
-
 
 routes.get('/:id', (request, response) => {
 
@@ -137,22 +115,10 @@ routes.delete('/user/:id', (req, res) => {
 
 // Ramen Routes
 
-// S3
-// routes.post('/app/ramen/upload', upload.any('images'), (req,res) => {
-//     console.log("req.files:", req.files)
-//     return res.status(200).send(req.files)
-// })
-
 // Cloudinary
 routes.post('/app/ramen/upload', (req,res) => {
     
 })
-
-// routes.get('/app/ramen/upload/latest', async (req, res) => {
-//     const getImage = await Ramens.findOne().sort({ _id: -1 });
-//     res.json(getImage.imageUrl);
-//   });
-
 
 routes.post('/app/ramen/add', auth, (req, res) =>{
     const newRamen = new newRamenTemplateCopy({

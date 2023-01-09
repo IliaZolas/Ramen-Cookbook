@@ -17,42 +17,42 @@ function App() {
         <Navbar />
         <Routes>
           <Route 
-            path="/" 
-            element={<Home />} 
-            />
-          <Route 
-            path="/ramen" 
-            element={<Ramen />} 
-            />
-
-
-          <Route path="/" element={<ProtectedRoutes/>}>
-            <Route 
-              path="/new-ramen" 
-              element={<NewRamen />} 
+              path="/" 
+              element={<Home />} 
               />
             <Route 
-              path="/ramen/update/:id" 
-              element={<UpdateRamen />} 
-              />
+              path="/ramen" 
+              element={<Ramen />} 
+            />
             <Route 
               path="/ramen/show/:id" 
               element={<ShowRamen />} 
               />
-          </Route>
-
-
-          <Route 
-            path="/signup" 
-            element={<AddUser />} 
-            />
-          <Route 
-            path="/login" 
-            element={<LoginUser />} 
-            />
+            <Route 
+              path="/signup" 
+              element={<AddUser />} 
+              />
+            <Route 
+              path="/login" 
+              element={<LoginUser />} 
+              />
+            <Route element={<ProtectedRoutes/>}>
+              <Route
+                path="/new-ramen" 
+                element={
+                  <NewRamen />   
+                }
+                />
+              <Route
+                path="/ramen/update/:id" 
+                element={
+                  <UpdateRamen />
+                } 
+                />
+            </Route>
         </Routes>
       </div>
-    </Router>
+      </Router>
   );
 };
 

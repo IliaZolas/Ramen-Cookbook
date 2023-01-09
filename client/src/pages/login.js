@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../components/ramenForm.css"
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const LoginUser = () => {
     const [email, setEmail ] = useState('');
@@ -23,14 +25,17 @@ const LoginUser = () => {
         .then((response) => { 
             console.log(response.json());
         })
-        .then(() => {
+        .then((result) => {
         setEmail();
         setPassword();
+        cookies.set("TOKEN", result.token, {
+            path: "/",
+            });
         })
         .catch((err) => {
         console.log(err.message , ":error message");
     });
-    // navigate('/ramen');
+    navigate('/ramen');
 };
 
 const handleSubmit = (e) => {

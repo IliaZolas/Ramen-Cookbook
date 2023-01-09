@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { cloudinary } from "cloudinary-core";
 import './ramencard.css'
 
 
