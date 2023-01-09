@@ -1,12 +1,16 @@
 import {Link} from 'react-router-dom';
 import './navbar.css';
+import Cookies from "universal-cookie";
 
-// const logout = () => {
-//     // destroy the cookie
-//     cookies.remove("TOKEN", { path: "/" });
-//     // redirect user to the landing page
-//     window.location.href = "/";
-//   }
+
+const cookies = new Cookies();
+
+const logout = () => {
+    // destroy the cookie
+    cookies.remove("TOKEN", { path: "/" });
+    // redirect user to the landing page
+    // window.location.href = "/";
+  }
 
 const Navbar = () => {
     return (
@@ -27,9 +31,9 @@ const Navbar = () => {
                 <Link to="/login" className="navitem">
                     Login
                 </Link>
-                <Link to="/logout" className="navitem">
+                <a href='/' onClick={() => logout()} className="navitem">
                     Logout
-                </Link>
+                </a>
                 <Link to="/account" className="navitem">
                     Account
                 </Link>

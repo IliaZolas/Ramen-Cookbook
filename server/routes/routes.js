@@ -11,6 +11,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const auth = require("./auth");
 
+
 // Index Routes
 
 routes.get('/', (req, res) => {
@@ -99,6 +100,17 @@ routes.post('/app/login', (req, res) => {
     })
 })
 
+// routes.post('/app/login', (req, res) => {
+
+// })
+
+// const logout = () => {
+//     // destroy the cookie
+//     cookies.remove("TOKEN", { path: "/" });
+//     // redirect user to the landing page
+//     window.location.href = "/";
+//   }
+
 // // free endpoint
 // app.get("/app/free-endpoint", (req, res) => {
 //     response.json({ message: "You are free to access me anytime" });
@@ -176,7 +188,7 @@ routes.get('/app/ramen', (req, res) => {
 })
 
 
-routes.put('/app/ramen/update/:id', (req, res) => {
+routes.put('/app/ramen/update/:id',auth, (req, res) => {
     const ramenId = req.params.id
     console.log(ramenId, "update ramen id route")
 
@@ -191,7 +203,7 @@ routes.put('/app/ramen/update/:id', (req, res) => {
         .then(data => res.json(data))
 })
 
-routes.delete('/app/ramen/delete/:id/:public_id', (req, res) => {
+routes.delete('/app/ramen/delete/:id/:public_id', auth, (req, res) => {
     const ramenId = req.params.id
     console.log(ramenId,":delete route")
 
