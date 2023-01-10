@@ -23,19 +23,19 @@ const LoginUser = () => {
         },
         })
         .then((response) => { 
-            console.log(response.json());
+            console.log("response:", response.json());
         })
-        .then((result) => {
+        .then((res) => {
         setEmail();
         setPassword();
-        cookies.set("TOKEN", result.token, {
+        cookies.set("TOKEN", res, {
             path: "/",
             });
         })
         .catch((err) => {
         console.log(err.message , ":error message");
     });
-    navigate('/ramen');
+    // navigate('/ramen');
 };
 
 const handleSubmit = (e) => {
