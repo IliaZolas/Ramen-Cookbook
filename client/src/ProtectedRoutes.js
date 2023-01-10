@@ -4,9 +4,9 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 const ProtectedRoutes = () => {
-  const auth = cookies.get("TOKEN");
-  console.log("auth:", auth)
-  // const auth = {token: false};
+  // const auth = cookies.get("TOKEN");
+  // console.log("auth:", auth)
+  const auth = {token: false};
 
 return (
     auth.token ? <Outlet/> : <Navigate to='/login'/>

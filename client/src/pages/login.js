@@ -23,12 +23,13 @@ const LoginUser = () => {
         },
         })
         .then((response) => { 
-            console.log("response:", response.json());
+            console.log("response:" ,response.json());
         })
-        .then((res) => {
+        .then((result) => {
         setEmail();
         setPassword();
-        cookies.set("TOKEN", res, {
+        console.log("data.token",result.data);
+        cookies.set("TOKEN", result.data.token, {
             path: "/",
             });
         })
