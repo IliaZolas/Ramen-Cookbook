@@ -11,7 +11,7 @@ const LoginUser = () => {
 
     // console.log("image url in state:",imageUrl);
 
-    const loginUser = async ( email, password) => {
+    const loginUser = async ( email, password, token) => {
         await fetch('http://localhost:4000/app/login', {
         method: 'POST',
         body: JSON.stringify({
@@ -28,8 +28,8 @@ const LoginUser = () => {
         .then((result) => {
         setEmail();
         setPassword();
-        console.log("data.token",result.data);
-        cookies.set("TOKEN", result.data.token, {
+        console.log("result",result);
+        cookies.set("TOKEN", token, {
             path: "/",
             });
         })
